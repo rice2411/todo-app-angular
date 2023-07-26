@@ -1,22 +1,27 @@
-<div nz-row style="height: calc(100% - 40px)">
+<div nz-row style="height: calc(100% - 40px); width: 100%">
   <div nz-col [nzSpan]="24" style="height: calc(100% - 40px); overflow-y: auto">
-    <app-todo [name]="'Learn React'" [priority]="'High'"></app-todo>
-    <app-todo [name]="'Learn Redux'" [priority]="'Medium'"></app-todo>
-    <app-todo [name]="'Learn JavaScript'" [priority]="'Low'"></app-todo>
+    <app-todo
+      [name]="item.name"
+      [priority]="item.priority"
+      *ngFor="let item of data; let i = index"
+    ></app-todo>
   </div>
   <div nz-col [nzSpan]="24">
-    <nz-input-group [nzCompact]="true" style="display: flex">
+    <nz-input-group [nzCompact]="true" style="display: flex; width: 100%">
       <input nz-input />
 
-      <nz-select ngModel="Medium">
-        <nz-option nzValue="High" [nzCustomContent]="true">
+      <nz-select
+        ngModel="Medium"
+        [nzCustomTemplate]="selectTemplate"
+        style="min-width: 110px"
+      >
+        <nz-option nzValue="High" nzLabel="red" [nzCustomContent]="true">
           <nz-tag [nzColor]="'red'">High</nz-tag></nz-option
         >
-        <nz-option nzValue="Medium" [nzCustomContent]="true">
+        <nz-option nzValue="Medium" nzLabel="blue" [nzCustomContent]="true">
           <nz-tag [nzColor]="'blue'">Medium</nz-tag></nz-option
         >
-        <nz-option nzValue="Low">
-          [nzCustomContent]="true">
+        <nz-option nzValue="Low" nzLabel="gray" [nzCustomContent]="true">
           <nz-tag [nzColor]="'gray'">Low</nz-tag></nz-option
         >
       </nz-select>
@@ -25,3 +30,6 @@
     </nz-input-group>
   </div>
 </div>
+<ng-template #selectTemplate let-selected>
+  <nz-tag [nzColor]="selected.nzLabel">{{ selected.nzValue }}</nz-tag>
+</ng-template>
