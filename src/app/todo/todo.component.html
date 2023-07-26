@@ -1,0 +1,6 @@
+<div nz-row style="margin-bottom: 3" class="{{ checked ? 'checked' : '' }}">
+  <label nz-checkbox [(ngModel)]="checked">{{ name }}</label>
+  <nz-tag [nzColor]="priorityColorMapping[priority]" style="margin: 0">
+    {{ priority }}
+  </nz-tag>
+</div>

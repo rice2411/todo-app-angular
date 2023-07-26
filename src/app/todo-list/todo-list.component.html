@@ -1,0 +1,27 @@
+<div nz-row style="height: calc(100% - 40px)">
+  <div nz-col [nzSpan]="24" style="height: calc(100% - 40px); overflow-y: auto">
+    <app-todo [name]="'Learn React'" [priority]="'High'"></app-todo>
+    <app-todo [name]="'Learn Redux'" [priority]="'Medium'"></app-todo>
+    <app-todo [name]="'Learn JavaScript'" [priority]="'Low'"></app-todo>
+  </div>
+  <div nz-col [nzSpan]="24">
+    <nz-input-group [nzCompact]="true" style="display: flex">
+      <input nz-input />
+
+      <nz-select ngModel="Medium">
+        <nz-option nzValue="High" [nzCustomContent]="true">
+          <nz-tag [nzColor]="'red'">High</nz-tag></nz-option
+        >
+        <nz-option nzValue="Medium" [nzCustomContent]="true">
+          <nz-tag [nzColor]="'blue'">Medium</nz-tag></nz-option
+        >
+        <nz-option nzValue="Low">
+          [nzCustomContent]="true">
+          <nz-tag [nzColor]="'gray'">Low</nz-tag></nz-option
+        >
+      </nz-select>
+
+      <button nz-button nzType="primary">Add</button>
+    </nz-input-group>
+  </div>
+</div>

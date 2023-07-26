@@ -1,0 +1,58 @@
+<div nz-row justify="center">
+  <div nz-col [nzSpan]="24">
+    <p
+      nz-typography
+      nzEllipsis
+      nzContent="Search"
+      style="font-weight: bold; margin-bottom: 3px; margin-top: 10px"
+    ></p>
+    <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input type="text" nz-input placeholder="input search text" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <span nz-icon nzType="search"></span>
+    </ng-template>
+  </div>
+  <div nz-col nz-col [nzSpan]="24">
+    <p
+      nz-typography
+      nzEllipsis
+      nzContent="  Filter By Status"
+      style="font-weight: bold; margin-bottom: 3px; margin-top: 10px"
+    ></p>
+
+    <nz-radio-group [(ngModel)]="radioValue">
+      <label nz-radio nzValue="All">All</label>
+      <label nz-radio nzValue="Completed">Completed</label>
+      <label nz-radio nzValue="Todo">Todo</label>
+    </nz-radio-group>
+  </div>
+  <div nz-col [nzSpan]="24">
+    <p
+      nz-typography
+      nzEllipsis
+      nzContent="
+        Filter By Priority"
+      style="font-weight: bold; margin-bottom: 3px; margin-top: 10px"
+    ></p>
+
+    <nz-select
+      nzMode="tags"
+      nzPlaceHolder="Please select"
+      style="width: 100%"
+      [nzCustomTemplate]="multipleTemplate"
+    >
+      <nz-option
+        *ngFor="let option of listOfOption"
+        [nzValue]="option.option"
+        [nzLabel]="option.color"
+        [nzCustomContent]="true"
+      >
+        <nz-tag [nzColor]="option.color">{{ option.option }}</nz-tag></nz-option
+      >
+    </nz-select>
+    <ng-template #multipleTemplate let-selected>
+      <nz-tag [nzColor]="selected.nzLabel">{{ selected.nzValue }}</nz-tag>
+    </ng-template>
+  </div>
+</div>
