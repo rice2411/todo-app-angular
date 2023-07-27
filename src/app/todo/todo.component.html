@@ -1,9 +1,14 @@
 <div
   nz-row
   style="margin-bottom: 3px; display: flex; justify-content: space-between"
-  class="{{ checked ? 'checked' : '' }}"
+  class="{{ status ? 'checked' : '' }}"
 >
-  <label nz-checkbox [(ngModel)]="checked">{{ name }}</label>
+  <label
+    nz-checkbox
+    [(ngModel)]="status"
+    (ngModelChange)="updateStatusEmit($event)"
+    >{{ name }}</label
+  >
   <nz-tag [nzColor]="priorityColorMapping[priority]" style="margin: 0px">
     {{ priority.charAt(0).toUpperCase() + priority.slice(1) }}
   </nz-tag>

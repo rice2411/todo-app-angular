@@ -1,19 +1,28 @@
+<app-filter
+  (searchTask)="searchTask($event)"
+  (statusFilter)="statusFilter($event)"
+  (priorityFilter)="priorityFilter($event)"
+></app-filter>
+<nz-divider></nz-divider>
 <div nz-row style="height: calc(100% - 40px); width: 100%">
-  <div nz-col [nzSpan]="24" style="height: calc(100% - 40px); overflow-y: auto">
+  <div nz-col [nzSpan]="24" style="overflow-y: auto">
     <app-todo
       [name]="item.name"
       [priority]="item.priority"
+      [status]="item.status"
+      (updateStatus)="updateStatus(item.id)"
       *ngFor="let item of data; let i = index"
     ></app-todo>
   </div>
   <div nz-col [nzSpan]="24">
     <nz-input-group [nzCompact]="true" style="display: flex; width: 100%">
-      <input nz-input />
+      <input nz-input [(ngModel)]="name" />
 
       <nz-select
         ngModel="Medium"
         [nzCustomTemplate]="selectTemplate"
-        style="min-width: 110px"
+        style="min-width: 120px"
+        [(ngModel)]="priority"
       >
         <nz-option nzValue="High" nzLabel="red" [nzCustomContent]="true">
           <nz-tag [nzColor]="'red'">High</nz-tag></nz-option
@@ -26,7 +35,7 @@
         >
       </nz-select>
 
-      <button nz-button nzType="primary">Add</button>
+      <button nz-button nzType="primary" (click)="createTask()">Add</button>
     </nz-input-group>
   </div>
 </div>

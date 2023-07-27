@@ -7,7 +7,13 @@
       style="font-weight: bold; margin-bottom: 3px; margin-top: 10px"
     ></p>
     <nz-input-group [nzSuffix]="suffixIconSearch">
-      <input type="text" nz-input placeholder="input search text" />
+      <input
+        type="text"
+        nz-input
+        placeholder="input search text"
+        [(ngModel)]="search"
+        (ngModelChange)="searchTaskEmit($event)"
+      />
     </nz-input-group>
     <ng-template #suffixIconSearch>
       <span nz-icon nzType="search"></span>
@@ -21,10 +27,13 @@
       style="font-weight: bold; margin-bottom: 3px; margin-top: 10px"
     ></p>
 
-    <nz-radio-group [(ngModel)]="radioValue">
-      <label nz-radio nzValue="All">All</label>
-      <label nz-radio nzValue="Completed">Completed</label>
-      <label nz-radio nzValue="Todo">Todo</label>
+    <nz-radio-group
+      [(ngModel)]="radioValue"
+      (ngModelChange)="statusFilterEmit($event)"
+    >
+      <label nz-radio nzValue="all">All</label>
+      <label nz-radio nzValue="completed">Completed</label>
+      <label nz-radio nzValue="todo">Todo</label>
     </nz-radio-group>
   </div>
   <div nz-col [nzSpan]="24">
@@ -40,7 +49,9 @@
       nzMode="tags"
       nzPlaceHolder="Please select"
       style="width: 100%"
+      [(ngModel)]="listOfTagOptions"
       [nzCustomTemplate]="multipleTemplate"
+      (ngModelChange)="priorityFilterEmit($event)"
     >
       <nz-option
         *ngFor="let option of listOfOption"
