@@ -10,8 +10,8 @@ export class TodoComponent {
   @Input() priority: string = 'Low';
   checked: boolean = false;
   priorityColorMapping: any = {
-    High: 'red',
-    Medium: 'blue',
-    Low: 'gray',
+    high: 'red',
+    medium: 'blue',
+    low: 'gray',
   };
 }
